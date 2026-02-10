@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практика 1-2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Магазин электроники</h1>
+        </header>
+
+        <div class="cards-container">
+            <!-- Карточка 1 -->
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="1694045252838.jpg" alt="Ноутбук">
+                    <span class="card-badge">Новинка</span>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Ноутбук игровой</h2>
+                    <p class="card-description">Мощный игровой ноутбук с процессором Intel Core i7 и видеокартой RTX 4060.</p>
+                    <div class="card-price">75 000 ₽</div>
+                    <button class="card-button">
+                        <i class="fas fa-shopping-cart"></i> В корзину
+                    </button>
+                </div>
+            </div>
+
+            <!-- Карточка 2 -->
+            <div class="product-card card-discount">
+                <div class="card-image">
+                    <img src="zana-latif-h5x1hmldpxi-unsplash-960x540.jpg" alt="Смартфон">
+                    <span class="card-badge">Скидка 20%</span>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Смартфон флагман</h2>
+                    <p class="card-description">Флагманский смартфон с камерой 108 Мп и AMOLED-экраном.</p>
+                    <div class="card-price">
+                        <span class="old-price">45 000 ₽</span>
+                        <span class="new-price">36 000 ₽</span>
+                    </div>
+                    <button class="card-button button-primary">
+                        <i class="fas fa-bolt"></i> Купить
+                    </button>
+                </div>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="Без названия.jpg" alt="Наушники">
+                    <span class="card-badge">Бестселлер</span>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Наушники беспроводные</h2>
+                    <p class="card-description">Наушники с шумоподавлением и временем работы до 30 часов.</p>
+                    <div class="card-price">8 500 ₽</div>
+                    <button class="card-button">
+                        <i class="fas fa-headphones"></i> Подробнее
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="api-info">
+                <p>Backend API: <a href="http://localhost:3000" target="_blank">http://localhost:3000</a></p>
+                <button id="loadProducts" class="api-button">
+                    <i class="fas fa-database"></i> Загрузить товары из API
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Подключение к Backend API
+        document.getElementById('loadProducts').addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/products');
+                const products = await response.json();
+                alert(`Загружено ${products.length} товаров из API!\n\nПервый товар: ${products[0].name} - ${products[0].price}₽`);
+                console.log('Товары из API:', products);
+            } catch (error) {
+                alert('Ошибка загрузки! Запустите backend сервер:\n\n1. Откройте терминал в папке backend\n2. Выполните: npm start');
+            }
+        });
+    </script>
+</body>
+</html>
